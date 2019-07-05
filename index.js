@@ -17,32 +17,32 @@ export default class SurfaceVR extends React.Component {
     height: 600
   }
 
-  changeSurfaceDimensions() {
-    surfaceModule.resizeSurface(500, 300);
-    this.setState({width: 500, height: 300});
-  }
-
-  changeSurfaceShape(type) {
-    if (type === "Flat") {
-      surfaceModule.changeSurfaceType("Flat");
-    } else {
-      surfaceModule.changeSurfaceType("Cylinder");
-    }
+  changeSurfaceDimensions(width, height) {
+    surfaceModule.resizeSurface(width, height);
+    this.setState({width: width, height: height});
   }
 
   render() {
     return (
       <View style={[styles.panel, {width: this.state.width, height: this.state.height}]}>
-        <VrButton style={styles.greetingBox} onClick={() => this.changeSurfaceDimensions()}>
-          <Text>Change Width & Length</Text>
+        <VrButton style={styles.greetingBox} onClick={() => this.changeSurfaceDimensions(500,300)}>
+          <Text>Change Dim.</Text>
         </VrButton>
 
-        <VrButton style={styles.greetingBox} onClick={() => this.changeSurfaceShape("Flat")}>
-          <Text>Flat Shape</Text>
+        <VrButton style={styles.greetingBox} onClick={() => surfaceModule.changeSurfaceType("Flat")}>
+          <Text>Flat</Text>
         </VrButton>
 
-        <VrButton style={styles.greetingBox} onClick={() => this.changeSurfaceShape("Cylinder")}>
-          <Text>Cylinder Shape</Text>
+        <VrButton style={styles.greetingBox} onClick={() => surfaceModule.changeSurfaceType("Cylinder")}>
+          <Text>Cylinder</Text>
+        </VrButton>
+
+        <VrButton style={styles.greetingBox} onClick={() => this.changeSurfaceDimensions(1000,600)}>
+          <Text>Reset</Text>
+        </VrButton>
+
+        <VrButton style={styles.greetingBox} onClick={() => surfaceModule.destroyPanel()}>
+          <Text>Destroy</Text>
         </VrButton>
       </View>
     );
@@ -57,7 +57,7 @@ const styles = StyleSheet.create({
   },
   greetingBox: {
     width: 200,
-    height: 100,
+    height: 60,
     padding: 20,
     backgroundColor: '#000000',
     borderColor: '#639dda',

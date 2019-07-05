@@ -4,7 +4,7 @@
 import {ReactInstance, Module ,Surface} from 'react-360-web';
 
 function init(bundle, parent, options = {}) {
-  const r360 = new ReactInstance(bundle, parent, {
+  r360 = new ReactInstance(bundle, parent, {
     fullScreen: true,
     nativeModules: [
       new surfaceModule(),
@@ -12,11 +12,14 @@ function init(bundle, parent, options = {}) {
     ...options,
   });
 
+
   surface = r360.getDefaultSurface();
-  r360.renderToSurface(
+
+  surfacePanel = r360.renderToSurface(
     r360.createRoot('SurfaceVR', {}),
     surface
   );
+
   r360.compositor.setBackground(r360.getAssetURL('360_world.jpg'));
 }
 
@@ -31,6 +34,10 @@ class surfaceModule extends Module {
 
   changeSurfaceType(Type) {
     Type === "Flat" ? surface.setShape(Surface.SurfaceShape.Flat) : surface.setShape(Surface.SurfaceShape.Cylinder);
+  }
+
+  destroyPanel() {
+    r360.detachRoot(surfacePanel);
   }
 }
 
