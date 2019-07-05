@@ -1,0 +1,4 @@
+<Box dimWidth={1} dimHeight={1} dimDepth={1} style={{transform: [{ translateY: 0, translateZ: -0.5 }], color: 'green' }}/>
+<Cylinder style={{transform: [{ translateX: -1, translateZ: -0.5 }], color: 'red' }}/>
+<Sphere radius={0.5} heightSegments={50} widthSegments={50} style={{transform: [{ translateX: 2, translateZ: -0.5 }], color: 'purple' }}/>
+<Plane dimWidth={10} dimHeight={10} style={{ color: 'yellow', transform: [{ translate: [0, -1.5, 0] }, { rotateX: -90 }] }}/>
