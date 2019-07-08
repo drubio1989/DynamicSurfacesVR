@@ -8,7 +8,7 @@ import {
   VrButton
 } from 'react-360';
 
-import {Surface} from 'react-360-web';
+// import {Surface} from 'react-360-web';
 const surfaceModule = NativeModules.surfaceModule;
 
 export default class SurfaceVR extends React.Component {
