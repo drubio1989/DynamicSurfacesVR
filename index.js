@@ -8,40 +8,25 @@ import {
   VrButton
 } from 'react-360';
 
-// import {Surface} from 'react-360-web';
 const surfaceModule = NativeModules.surfaceModule;
 
 export default class SurfaceVR extends React.Component {
-  state = {
-    width: 1000,
-    height: 600
-  }
-
-  changeSurfaceDimensions(width, height) {
-    surfaceModule.resizeSurface(width, height);
-    this.setState({width: width, height: height});
-  }
-
   render() {
     return (
-      <View style={[styles.panel, {width: this.state.width, height: this.state.height}]}>
-        <VrButton style={styles.greetingBox} onClick={() => this.changeSurfaceDimensions(500,300)}>
+      <View style={styles.panel}>
+        <VrButton>
           <Text>Change Dim.</Text>
         </VrButton>
-
-        <VrButton style={styles.greetingBox} onClick={() => surfaceModule.changeSurfaceType("Flat")}>
+        <VrButton>
           <Text>Flat</Text>
         </VrButton>
-
-        <VrButton style={styles.greetingBox} onClick={() => surfaceModule.changeSurfaceType("Cylinder")}>
+        <VrButton>
           <Text>Cylinder</Text>
         </VrButton>
-
-        <VrButton style={styles.greetingBox} onClick={() => this.changeSurfaceDimensions(1000,600)}>
+        <VrButton>
           <Text>Reset</Text>
         </VrButton>
-
-        <VrButton style={styles.greetingBox} onClick={() => surfaceModule.destroyPanel()}>
+        <VrButton>
           <Text>Destroy</Text>
         </VrButton>
       </View>
@@ -51,13 +36,14 @@ export default class SurfaceVR extends React.Component {
 
 const styles = StyleSheet.create({
   panel: {
+    // Fill the entire surface
+    width: 1000,
+    height: 600,
     backgroundColor: 'rgba(255, 255, 255, 0.4)',
     justifyContent: 'center',
     alignItems: 'center',
   },
   greetingBox: {
-    width: 200,
-    height: 60,
     padding: 20,
     backgroundColor: '#000000',
     borderColor: '#639dda',
