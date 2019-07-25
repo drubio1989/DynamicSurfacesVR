@@ -8,8 +8,19 @@ import {
   VrButton
 } from 'react-360';
 
-// import {Surface} from 'react-360-web';
 const surfaceModule = NativeModules.surfaceModule;
+
+class ButtonSurface extends React.Component {
+  render() {
+    return(
+      <View style={styles.buttonPanel}>
+        <VrButton style={styles.greetingBox} onClick={() => surfaceModule.createPanel()}>
+          <Text>Create Panel</Text>
+        </VrButton>
+      </View>
+    )
+  }
+}
 
 export default class SurfaceVR extends React.Component {
   state = {
@@ -66,6 +77,14 @@ const styles = StyleSheet.create({
   greeting: {
     fontSize: 30,
   },
+  buttonPanel: {
+    width: 300,
+    height: 300,
+    backgroundColor: 'rgb(255,127,80)',
+    justifyContent: 'center',
+    alignItems: 'center'
+  }
 });
 
 AppRegistry.registerComponent('SurfaceVR', () => SurfaceVR);
+AppRegistry.registerComponent('ButtonSurface', () => ButtonSurface);

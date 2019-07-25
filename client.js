@@ -12,6 +12,18 @@ function init(bundle, parent, options = {}) {
     ...options,
   });
 
+  buttonSurface = new Surface(300,300, Surface.SurfaceShape.Flat);
+
+  buttonSurface.setAngle(
+    5,
+    0
+  );
+
+  r360.renderToSurface(
+    r360.createRoot('ButtonSurface', {}),
+    buttonSurface
+  );
+
 
   surface = r360.getDefaultSurface();
 
@@ -38,6 +50,13 @@ class surfaceModule extends Module {
 
   destroyPanel() {
     r360.detachRoot(surfacePanel);
+  }
+
+  createPanel() {
+    r360.renderToSurface(
+      r360.createRoot('SurfaceVR', {}),
+      surface
+    );
   }
 }
 
