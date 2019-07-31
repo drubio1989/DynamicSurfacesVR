@@ -49,11 +49,12 @@ class surfaceModule extends Module {
   }
 
   destroyPanel() {
+    console.log(r360)
     r360.detachRoot(surfacePanel);
   }
 
   createPanel() {
-    r360.renderToSurface(
+    surfacePanel = r360.renderToSurface(
       r360.createRoot('SurfaceVR', {}),
       surface
     );
